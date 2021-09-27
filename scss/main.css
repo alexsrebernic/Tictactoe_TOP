@@ -1,12 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&display=swap");
-* {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+#gameplay {
+  height: 85vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: none;
 }
 
-#title {
+#gameplay #player_1_side {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -16,13 +21,338 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 15vh;
-  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 30%;
+  color: white;
 }
 
-#title h1 {
-  font-weight: 600;
+#gameplay #player_2_side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 30%;
+  display: none;
   color: white;
+}
+
+#gameplay #ai_side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+  width: 30%;
+  color: white;
+}
+
+#gameplay .sign {
+  font-size: 20px;
+}
+
+#gameplay #game {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 40%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#gameplay #game #gameboard {
+  display: -ms-grid;
+  display: grid;
+  height: 300px;
+  -ms-grid-columns: (105px)[3];
+      grid-template-columns: repeat(3, 105px);
+  -ms-grid-rows: (105px)[3];
+      grid-template-rows: repeat(3, 105px);
+}
+
+#gameplay #game .box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 50px;
+  width: 100px;
+  height: 100px;
+  border: 1px solid white;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+#gameplay #game .box:hover {
+  box-shadow: 1px -1px 16px 0px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 1px -1px 16px 0px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 1px -1px 16px 0px rgba(255, 255, 255, 0.75);
+}
+
+#gameplay #game #buttons_options {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-self: flex-end;
+  width: 40%;
+  height: 10%;
+}
+
+#gameplay #game #buttons_options button {
+  width: 100px;
+  height: 50px;
+  background: none;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+#gameplay #game #buttons_options button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+#buttonvs {
+  height: 85vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: none;
+}
+
+#buttonvs h2 {
+  font-size: 35px;
+  color: white;
+}
+
+#buttonvs #buttons {
+  margin-top: 20px;
+  width: 30%;
+  height: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#buttonvs #buttons button {
+  color: white;
+  background: none;
+  border: 3px solid white;
+  border-radius: 10px;
+  width: 45%;
+  height: 100%;
+  font-size: 20px;
+  font-weight: 600;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+#buttonvs #buttons button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  box-shadow: 1px -1px 16px 0px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 1px -1px 16px 0px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 1px -1px 16px 0px rgba(255, 255, 255, 0.75);
+}
+
+.emerge {
+  -webkit-animation: 1000ms linear emerge;
+          animation: 1000ms linear emerge;
+}
+
+@-webkit-keyframes emerge {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes emerge {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+footer {
+  height: 15vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+footer svg {
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+  width: 30px;
+  margin-left: 5px;
+}
+
+footer svg:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}
+
+#start_game {
+  height: 85vh;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#start_game h1 {
+  font-size: 60px;
+  color: white;
+  border: 6px solid white;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#start_game button {
+  margin-top: 20px;
+  border: none;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  color: #a9cce3;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+#start_game button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+#start_game button:hover h1 {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.animation {
+  -webkit-animation: 1000ms linear ease;
+          animation: 1000ms linear ease;
+  display: none;
+}
+
+@-webkit-keyframes ease {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes ease {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {

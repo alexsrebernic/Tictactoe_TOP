@@ -1,0 +1,17 @@
+footer {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+svg {
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 30px;
+    margin-left: 5px;
+}   
+svg:hover {
+    transform: scale(1.2);
+}
+}

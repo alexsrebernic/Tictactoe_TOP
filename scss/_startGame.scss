@@ -1,0 +1,47 @@
+#start_game {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+        font-size: 60px;
+        color: white;
+        border: 6px solid white;
+        border-radius: 5px;
+        padding: 10px;
+    }
+    button {
+        margin-top: 20px;
+        border: none;
+        padding: 15px;
+        background: white;
+        border-radius: 10px;
+        color:#a9cce3;
+        font-weight: 700;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+    button:hover {
+        h1 {
+            transform: scale(1.1);
+        }
+        transform: scale(1.1);
+    }
+}
+.animation {
+    animation: 1000ms linear ease;
+    display: none;
+}
+
+
+@keyframes ease{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
