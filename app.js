@@ -16,9 +16,9 @@ const textPlayer1Side = document.querySelector("#sign_player_1")
 const textPlayer2Side = document.querySelector("#sign_player_2")
 const textAiSide = document.querySelector("#sign_ai")
 
-const textWinsPlayer1 = document.querySelector("#wins_player1")
-const textWinsPlayer2 = document.querySelector("#wins_player2")
-const textWinsAi = document.querySelector("#wins_ai")
+const winsPlayer1 = document.querySelector("#wins_player1")
+const winsPlayer2 = document.querySelector("#wins_player2")
+const winsAi = document.querySelector("#wins_ai")
 
 const playerXTurnText = document.querySelector("#player_x_turn_text")
 
@@ -40,7 +40,6 @@ let scoreAi = 0
 
 
 function changeDisplayToChooseOpponentDisplay(){
-    restartGameBoard()
     gameplayDisplay.setAttribute("class","animation")
     startGameDisplay.setAttribute("class", "animation")
     setTimeout(function(){
@@ -75,29 +74,97 @@ function changeDisplayToGameplayDisplayPlayer(){
     },1000)
 }
 function restartGameBoard(){
+    signs= 0
     scoreAi = 0
     scorePlayer1 = 0
     scorePlayer2 = 0
-    textWinsAi.textContent = ''
-    textWinsPlayer1.textContent = ''
-    textWinsPlayer2.textContent = 
+    winsAi.textContent = ''
+    winsPlayer1.textContent = ''
+    winsPlayer2.textContent = ''
+    player1.setArray([])  
+    player2.setArray([]) 
+    gamesIsOver = false
+    gameBoard.resetBoard()
+    setMessage("")
     boxesBoard.forEach(box => {
         box.textContent = '';
     })
 }
 
-function putSignOnBox(e){
-    if(e.target.textContent !== '') console.log("asd")
-    if(player1.getTurn){
 
-        player1.setTurn(false)
+
+function putSignOnBox(e){
+    if(e.target.textContent !== '' || gamesIsOver) return
+    if(player1.getTurn()){
+        setSignInArray(player1,player2,"Its turn of Player 2",e)
+    } else if (player2.getTurn()){
+        setSignInArray(player2,player1,"Its turn of Player 1",e)
+    }
+    signs += 1
+    if(checkWinner.checkPlayerWinner(player1.getArray())){
+        resetSettings(winsPlayer1,"Player 1 Wins The Round!",scorePlayer1)
+        scorePlayer1 += 1
+    }
+    if(checkWinner.checkPlayerWinner(player2.getArray())){
+        resetSettings(winsPlayer2,"Player 2 Wins The Round!",scorePlayer2)   
+        scorePlayer2 += 1
+
+    }
+    if(signs == 9){
+        resetSettings(null,"It's a tie!",null)
+       
+    }
+    if(scorePlayer1 > 2 && scorePlayer1 === scorePlayer2 + 2 || scorePlayer1 === 3 && scorePlayer2 === 0){
+        playerWins("Player 1 Wins!")
+    }
+    if(scorePlayer2 > 2 && scorePlayer2 === scorePlayer1 + 2 || scorePlayer2 === 3 && scorePlayer1 === 0){
+        playerWins("Player 2 Wins!")
+
     }
 }
-function Player(sign,turn,wins){
+function playerWins(message){
+    restartGameBoard()
+    setMessage(message)
+
+}
+function setMessage(str){
+    let para = document.getElementById("player_x_turn_text")
+    para.textContent = str
+    para.style.color = "white"
+}
+
+function setImg(player){
+    let img = document.createElement("img")
+    img.src = "./img/768px-White_check.svg.png"
+    img.style.width = "15px"
+    player.appendChild(img)
+}
+
+function resetSettings(player,message){
+    player2.setArray([])
+    player1.setArray([])
+    setMessage(message) 
+    gameBoard.resetBoard()
+    boxesBoard.forEach(box => {
+        box.textContent = '';
+    })
+    gamesIsOver = false
+    signs= 0
+    if(player != null) setImg(player)
+}
+function setSignInArray(winPlayer,loosePlayer,message,e){
+    winPlayer.getArray().push(parseInt(e.target.dataset.index))
+    e.target.textContent = winPlayer.getSign()
+    gameBoard.setBox(parseInt(e.target.dataset.index),winPlayer.getSign())
+    winPlayer.setTurn(false)
+    loosePlayer.setTurn(true)
+    setMessage(message)
+}
+function Player(sign,turn,wins,array){
     this.sign = sign
     this.turn = turn
     this.wins = wins
-
+    this.array = array
     const getSign = () =>{
         return sign
     }
@@ -106,6 +173,9 @@ function Player(sign,turn,wins){
     }
     const getWins = () =>{
         return wins
+    }
+    const getArray = () => {
+        return array
     }
     const setSign = (newSign) =>{
         return sign = newSign
@@ -116,17 +186,64 @@ function Player(sign,turn,wins){
     const setWins = (newWins) => {
         return wins = newWins
     }
+    const setArray = (newArray) => {
+        return array = newArray
+    }
 
-    return { getSign,getTurn,getWins,setSign,setTurn,setWins }
+    return { getSign,getTurn,getWins,getArray,setArray,setSign,setTurn,setWins }
 }
-let player1 = Player("X",true,0)
-let player2 = Player("O",false,0)
-let machine = Player("O",false,0)
-
+const player1 = Player("X",true,0,[])
+const player2 = Player("O",false,[])
+const machine = Player("O",false,[])
+let gamesIsOver = false
+let signs = 0
 
 const gameBoard = (() => {
-    const board = ["","","","","","","","",""]
+    const board = ["","","",
+                   "","","",
+                   "","",""]
+    
+    
+    const setBox = (index,sign) => {
+        if (index > board.length) return;
+        board[index] = sign
+    }
+    const getBox = (index) => {
+        if (index > board.length) return;
+        return board[index]
+    }
+    const getBoard = () => {
+        return board
+    }
+    const resetBoard = () => {
+        for(let l = 0 ; l < board.length;l++){
+            board[l] = ""
+        }
+    }
+    return { setBox,getBox,getBoard,resetBoard }
 })()
 
-
+const checkWinner = (() => {
+    
+    const winConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+     const checkPlayerWinner = (arrayPlayer) => {
+       
+        for(let array of winConditions){
+            if( array.every(r=> arrayPlayer.includes(r))){
+                gamesIsOver = true
+                return true
+           } 
+        }
+     }
+     return{ checkPlayerWinner,gamesIsOver }
+})()
     

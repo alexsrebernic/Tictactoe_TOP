@@ -73,6 +73,23 @@
   font-size: 20px;
 }
 
+#gameplay .wins {
+  width: 60px;
+  height: 20px;
+}
+
+#gameplay #player_x_turn_text {
+  height: 30px;
+  width: 200px;
+  text-align: center;
+}
+
+#gameplay #rules {
+  color: white;
+  text-align: center;
+  width: 50%;
+}
+
 #gameplay #game {
   display: -webkit-box;
   display: -ms-flexbox;

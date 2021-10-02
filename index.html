@@ -24,18 +24,18 @@
         <div id="player_1_side">
             <span class="sign" id="sign_player_1">X</span>
             <h2 id="name_player_1">Player 1</h2>
-            <div id="wins_player1"></div>
+            <div class="wins" id="wins_player1"></div>
         </div>
             <div id="game">
             <p id="player_x_turn_text"></p>
 
                 <div id="gameboard">
-                <div class="box" data-index ="0">X</div>
-                <div class="box" data-index ="1">X</div>
-                <div class="box" data-index ="2">X</div>
-                <div class="box" data-index ="3">X</div>
-                <div class="box" data-index ="4">X</div>
-                <div class="box" data-index ="5">X</div>
+                <div class="box" data-index ="0"></div>
+                <div class="box" data-index ="1"></div>
+                <div class="box" data-index ="2"></div>
+                <div class="box" data-index ="3"></div>
+                <div class="box" data-index ="4"></div>
+                <div class="box" data-index ="5"></div>
                 <div class="box" data-index ="6"></div>
                 <div class="box" data-index ="7"></div>
                 <div class="box" data-index ="8"></div>
@@ -43,19 +43,22 @@
                 <div id="buttons_options">
                 <button id="restart_button">Restart</button>
                 <button id="change_opponent_button">Change opponent</button>
+                
+            </div>
+            <div id="rules">
+                <h2>Rules:</h2>
+                <p>The player who reaches 3 rounds won wins, or if the 3 rounds are passed, the one with the advantage of 2 wins.</p>
             </div>
             </div>
             <div id="player_2_side">
                 <span class="sign" id="sign_player_2">O</span>
                 <h2 id="name_player_2">Player 2</h2>
-                <div id="wins_player2"></div>
+                <div class="wins" id="wins_player2"></div>
             </div>
             <div id="ai_side">
-
                 <span class="sign" id="sign_ai">O</span>
-
                 <h2 id="name_ai">AI</h2>
-                <div id="wins_ai"></div>
+                <div class="wins" id="wins_ai"></div>
             </div>
     </div>
     <footer>

@@ -37,6 +37,20 @@
     .sign {
         font-size: 20px;
     }
+    .wins {
+        width: 60px;
+        height: 20px;
+    }
+    #player_x_turn_text{
+        height: 30px;
+        width: 200px;
+        text-align: center;
+    }
+    #rules {
+        color: white;
+        text-align: center;
+        width: 50%;
+    }
     #game{
         display: flex;
         flex-direction: column;
